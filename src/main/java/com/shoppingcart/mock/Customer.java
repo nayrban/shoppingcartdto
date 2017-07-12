@@ -22,6 +22,10 @@ public class Customer {
 		cart.addItem(product, qty);
 	}
 
+	public void setDiscount(double discount){
+		cart.setDiscount(discount);
+	}
+
 	public String getCoupon() {
 		return coupon;
 	}

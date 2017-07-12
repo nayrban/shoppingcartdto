@@ -25,6 +25,11 @@ public class Cart {
 		this.discount += discount;
 	}
 
+	public void setDiscount(double discount) {
+		double totalDiscount = getTotalPrice() * discount;
+		this.discount += totalDiscount;
+	}
+
 	public int getTotalPrice() {
 		int total = 0;
 		for (CartItem item : cartItems) {

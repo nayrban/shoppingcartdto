@@ -1,25 +1,30 @@
 package com.shoppingcart.mock;
 
-public class CartItem {
-	private Cart cart;
-	private Product product;
-	private int qty;
-	
-	public CartItem(Cart cart, Product product, int qty) {
-		this.cart = cart;
-		this.product = product;
-		this.qty = qty;
-	}
+import java.io.Serializable;
 
-	public Product getProduct() {
-		return product;
-	}
+public class CartItem implements Serializable {
+    private Product product;
+    private int qty;
+    private static final long serialVersionUID = 1L;
 
-	public int getQty() {
-		return qty;
-	}
-	
-	public String toString() {
-		return product + ", qty: " + qty;
-	}
+    public CartItem() {
+        super();
+    }
+
+    public CartItem(Product product, int qty) {
+        this.product = product;
+        this.qty = qty;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public String toString() {
+        return product + ", qty: " + qty;
+    }
 }

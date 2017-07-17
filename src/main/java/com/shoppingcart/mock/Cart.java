@@ -1,71 +1,67 @@
 package com.shoppingcart.mock;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
-	private Customer customer;
-	private List<CartItem> cartItems = new ArrayList<CartItem>();
-	private double discount;
+public class Cart implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	public Cart(Customer customer) {
-		this.customer = customer;
-	}
+    private List<CartItem> cartItems = new ArrayList<CartItem>();
+    private double discount;
 
-	public void addItem(Product p, int qty) {
-		CartItem cartItem = new CartItem(this, p, qty);
-		cartItems.add(cartItem);
-	}
+    public Cart() {
+        super();
+    }
 
-	public double getDiscount() {
-		return discount;
-	}
+    public void addItem(Product p, int qty) {
+        CartItem cartItem = new CartItem(p, qty);
+        cartItems.add(cartItem);
+    }
 
-	public void addDiscount(double discount) {
-		this.discount += discount;
-	}
+    public double getDiscount() {
+        return discount;
+    }
 
-	public void setDiscount(double discount) {
-		double totalDiscount = getTotalPrice() * discount;
-		this.discount += totalDiscount;
-	}
+    public void addDiscount(double discount) {
+        this.discount += discount;
+    }
 
-	public int getTotalPrice() {
-		int total = 0;
-		for (CartItem item : cartItems) {
-			total += item.getProduct().getPrice() * item.getQty();
-		}
-		return total;
-	}
+    public void setDiscount(double discount) {
+        double totalDiscount = getTotalPrice() * discount;
+        this.discount += totalDiscount;
+    }
 
-	public Customer getCustomer() {
-		return customer;
-	}
+    public int getTotalPrice() {
+        int total = 0;
+        for (CartItem item : cartItems) {
+            total += item.getProduct().getPrice() * item.getQty();
+        }
+        return total;
+    }
 
-	public List<CartItem> getCartItems() {
-		return cartItems;
-	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
 
-	public int getFinalPrice() {
-		return getTotalPrice() - (int) getDiscount();
-	}
 
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		for (CartItem cartItem : cartItems) {
-			sb.append(cartItem)
-			  .append("\n");
-		}
-		sb.append("Discount: ")
-		  .append(getDiscount())
-		  .append("\nTotal: ")
-		  .append(getTotalPrice())
-		  .append("\nTotal After Discount: ")
-		  .append(getFinalPrice());
-		return sb.toString();
-	}
+    public int getFinalPrice() {
+        return getTotalPrice() - (int) getDiscount();
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (CartItem cartItem : cartItems) {
+            sb.append(cartItem)
+                    .append("\n");
+        }
+        sb.append("Discount: ")
+                .append(getDiscount())
+                .append("\nTotal: ")
+                .append(getTotalPrice())
+                .append("\nTotal After Discount: ")
+                .append(getFinalPrice());
+        return sb.toString();
+    }
 }

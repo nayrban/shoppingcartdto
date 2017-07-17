@@ -1,24 +1,22 @@
 package com.shoppingcart.mock;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Cart cart;
 	private String coupon;
 	private boolean isNew;
-	
-	public static Customer newCustomer() {
-		Customer customer = new Customer();
-		customer.isNew = true;
-		return customer;
+
+	public Customer(){
+		super();
 	}
-	
+
 	public boolean getIsNew() {
 		return isNew;
 	}
 
 	public void addItem(Product product, int qty) {
-		if (cart == null) {
-			cart = new Cart(this);			
-		}
 		cart.addItem(product, qty);
 	}
 

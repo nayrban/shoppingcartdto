@@ -1,23 +1,31 @@
 package com.shoppingcart.mock;
 
-public class Product {
-	private int price;
-	private String desc;
-	
-	public Product(String desc, int price) {
-		this.desc = desc;
-		this.price = price;
-	}
+import java.io.Serializable;
 
-	public int getPrice() {
-		return price;
-	}
+public class Product implements Serializable {
 
-	public String getDesc() {
-		return desc;
-	}
-	
-	public String toString() {
-		return "product: " + desc + ", price: " + price;
-	}
+    private static final long serialVersionUID = 1L;
+    private int price;
+    private String desc;
+
+    public Product() {
+        super();
+    }
+
+    public Product(String desc, int price) {
+        this.desc = desc;
+        this.price = price;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String toString() {
+        return "product: " + desc + ", price: " + price;
+    }
 }
